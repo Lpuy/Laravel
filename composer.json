@@ -1,0 +1,11 @@
+{
+    "require": {
+        "tymon/jwt-auth": "^0.5.12",
+      "ext-pdo": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    }
+}
