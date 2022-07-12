@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Size extends Model
+class Image extends Model
 {
     use HasFactory;
 
+    protected $table = 'image';
+
     protected $fillable = [
-        'size'
+        'image',
+        'goods_id'
     ];
 
-    public function goods(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function goods()
     {
-        return $this->belongsToMany(Goods::class);
+        return $this->belongsTo(Goods::class);
     }
 }

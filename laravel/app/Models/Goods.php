@@ -15,16 +15,22 @@ class Goods extends Model
         'price',
         'text',
         'object',
+        'sub_categories_id'
 
     ];
 
-    public function sizes()
+    public function sizes(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Size::class);
     }
 
-    public function sub_categories()
+    public function sub_categories(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(SubCategories::class);
+    }
+
+    public function imege(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Image::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\GoodsFormRequest;
 use App\Models\Goods;
+use App\Models\Image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -48,6 +49,7 @@ class GoodsController extends Controller
     {
 // Dorobitu privyazki sub_categories
         Goods::create($request->validated());
+
         return redirect()->route('goods.create')->with('success', 'Товар добавлений');
     }
 
@@ -86,7 +88,16 @@ class GoodsController extends Controller
     public function update(GoodsFormRequest $request, int $id): RedirectResponse
     {
         $goods = Goods::findOrFail($id);
-        $goods->update($request->validated());
+
+        $data = $request->validated();
+        if ($request->has('image')) {
+            $image['image'] = str_replace('public/goods/','', $request->file('image')->store('public/goods'));
+            $image['goods_id'] = $id;
+            Image::create($image);
+//            $data['image'] = $image;
+
+        }
+        $goods->update($data);
         return redirect()->route('goods.index')->with('success', 'Товар змінено');
     }
 
