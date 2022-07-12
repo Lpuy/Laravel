@@ -29,7 +29,7 @@ class GoodsFormRequest extends FormRequest
             'text' => ['required', 'min:5'],
             'amount' => ['int'],
             'price' => ['required','numeric'],
-            'image' => ['mimes:jpeg,png,bmp', 'dimensions:min_width=500, min_height=300'],
+            'image' => ['mimes:jpeg,png,bmp'],
         ];
     }
 }

@@ -9,7 +9,8 @@
     @endif
 
     <form class="form-floating" action="{{isset($goods) ? route('goods.update', $goods->id) : route('goods.store')}}"
-          method="POST">
+          method="POST" enctype="multipart/form-data">
+
         @csrf
 
         @if(isset($goods))

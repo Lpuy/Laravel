@@ -10,4 +10,9 @@ class GoodsSize extends Model
     use HasFactory;
 
     protected $table = 'goods_size';
+
+    protected $fillable = [
+        'goods_id',
+        'size_id'
+    ];
 }
